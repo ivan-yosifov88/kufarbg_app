@@ -29,7 +29,7 @@ class Profile(models.Model):
     LAST_NAME_MAX_LENGTH = 20
     LAST_NAME_MIN_LENGTH = 2
     PHONE_NUMBER_MAX_LENGTH = 16
-    PHONE_NUMBER_REGEX_PATTERN = r'^\+?1?\d{9, 15}$'
+    PHONE_NUMBER_REGEX_PATTERN = r"^\+?1?\d{9,15}$"
     PHONE_NUMBER_ERROR_MESSAGE = "Phone number must be entered in the format: '+999999999'.Up to 15 digits is allowed"
 
     class GENDER(enum.Enum):
@@ -66,7 +66,7 @@ class Profile(models.Model):
         )
     )
     phone_number = models.CharField(
-        max_length= PHONE_NUMBER_MAX_LENGTH,
+        max_length=PHONE_NUMBER_MAX_LENGTH,
         null=True,
         blank=True,
         validators=(
@@ -85,7 +85,7 @@ class Profile(models.Model):
             MaxDateValidator,
         )
     )
-    image = models.URLField(
+    image_url = models.URLField(
         null=True,
         blank=True,
     )

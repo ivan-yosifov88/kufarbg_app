@@ -1,12 +1,12 @@
+import profile
+
 from django.contrib.auth import views as auth_views, get_user_model, login
 from django.views import generic as views
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
-from kufarbg_app.auth_app.forms import UserRegistrationForm
+from kufarbg_app.auth_app.forms import UserRegistrationForm, EditProfileForm
 from kufarbg_app.auth_app.models import Profile
-
-UserModel = get_user_model()
 
 
 class UserRegisterView(views.CreateView):
@@ -36,8 +36,10 @@ class UserDetailsView(views.DetailView):
 
 class EditProfileView(views.UpdateView):
     model = Profile
+    form_class = EditProfileForm
     template_name = 'auth_app/edit_profile.html'
     context_object_name = 'profile'
+    success_url = reverse_lazy('show home')
 
 
 class DeleteProfileView(views.DeleteView):

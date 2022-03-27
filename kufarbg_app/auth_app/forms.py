@@ -1,4 +1,6 @@
+from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
+
 
 from kufarbg_app.auth_app.models import Profile
 
@@ -10,14 +12,14 @@ class UserRegistrationForm(auth_forms.UserCreationForm):
         model = UserModel
         fields = ('email', 'password1', 'password2')
         widgets = {
-            'email': auth_forms.forms.EmailInput(
+            'email': forms.EmailInput(
                 attrs={
                     'placeholder': 'Enter email',
                 }
             ),
 
-            'password1': auth_forms.forms.PasswordInput(),
-            'password2': auth_forms.forms.PasswordInput(),
+            'password1': forms.PasswordInput(),
+            'password2': forms.PasswordInput(),
         }
 
     def save(self, commit=True):
@@ -31,8 +33,18 @@ class UserRegistrationForm(auth_forms.UserCreationForm):
         return user
 
 
-class EditProfileForm:
-    pass
+class EditProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+        for placeholder in self.fields:
+            self.fields[placeholder].widget.attrs['placeholder'] = "Please enter "+' '.join(placeholder.split('_'))
+
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
 
 
 class DeleteProfileForm:
