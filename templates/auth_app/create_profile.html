@@ -1,0 +1,18 @@
+{% extends 'base/base_test_index.html' %}
+
+
+
+{% block page_content %}
+    <form action="{% url 'create profile' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary">Register</button>
+    </form>
+    <div>
+        <label>
+            If you don't have registration please:
+        </label>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    </div>
+
+{% endblock %}
