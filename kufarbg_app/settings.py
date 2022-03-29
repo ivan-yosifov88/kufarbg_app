@@ -96,8 +96,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = (
+    BASE_DIR / 'staticfiles',
+)
+
+MEDIA_ROOT = BASE_DIR / 'mediafiles'
+MEDIA_URL = '/media/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -109,5 +115,4 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'auth_app.AppUser'
 
-
-
+LOGOUT_REDIRECT_URL = '/'

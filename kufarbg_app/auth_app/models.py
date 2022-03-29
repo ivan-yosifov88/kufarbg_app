@@ -1,3 +1,4 @@
+import datetime
 import enum
 
 import django.contrib.auth.models as auth_model
@@ -38,7 +39,7 @@ class Profile(models.Model):
 
         @classmethod
         def choices(cls):
-            return ((item.name, item.value) for item in cls)
+            return ((item.value, item.value) for item in cls)
 
         @classmethod
         def max_length(cls):
@@ -77,7 +78,7 @@ class Profile(models.Model):
         )
     )
 
-    age = models.DateField(
+    date_of_birth = models.DateField(
         null=True,
         blank=True,
         validators=(
@@ -102,5 +103,14 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+
+    @property
+    def age(self):
+        return datetime.datetime.now().year - self.date_of_birth.year
 
 
