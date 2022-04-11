@@ -3,7 +3,7 @@ from django.utils.deconstruct import deconstructible
 
 
 def validate_only_letters(value):
-    if not value.isalnum():
+    if not value.isalpha():
         raise ValidationError("Must contains only letters")
 
 
