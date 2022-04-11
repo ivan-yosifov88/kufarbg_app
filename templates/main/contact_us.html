@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="row justify-content-center">
+        <h2>Contact Us</h2>
+    </div>
+    <div class="position-sticky">
+        {% if owner_data %}
+            <h1 class="display-4">Welcome to {{ owner_data.company_name }}</h1>
+            <h2>Email: {{ owner_data.email }}</h2>
+            <h3>Address: {{ owner_data.address }}</h3>
+            <h4>Phone: {{ owner_data.phone_number }}</h4>
+        {% endif %}
+        <p class="lead">{{ thoughts }}</p>
+        <hr class="my-4">
+        <div class="flex-row">
+            <form action="{% url 'contacts' %}" method='post'>
+                {% csrf_token %}
+                {{ form }}
+                <button class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

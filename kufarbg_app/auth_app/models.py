@@ -32,6 +32,8 @@ class Profile(models.Model):
     PHONE_NUMBER_MAX_LENGTH = 16
     PHONE_NUMBER_REGEX_PATTERN = r"^\+?1?\d{9,15}$"
     PHONE_NUMBER_ERROR_MESSAGE = "Phone number must be entered in the format: '+999999999'.Up to 15 digits is allowed"
+    MIN_DATE_OF_BIRTH = datetime.date(1920, 1, 1)
+    MAX_DATE_OF_BIRTH = datetime.date(2100, 1, 1)
 
     class GENDER(enum.Enum):
         MALE = 'Male'
@@ -82,8 +84,8 @@ class Profile(models.Model):
         null=True,
         blank=True,
         validators=(
-            MinDateValidator,
-            MaxDateValidator,
+            MinDateValidator(MIN_DATE_OF_BIRTH),
+            MaxDateValidator(MAX_DATE_OF_BIRTH),
         )
     )
     image_url = models.URLField(
@@ -108,9 +110,6 @@ class Profile(models.Model):
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
 
-
     @property
     def age(self):
         return datetime.datetime.now().year - self.date_of_birth.year
-
-

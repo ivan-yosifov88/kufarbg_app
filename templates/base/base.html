@@ -1,3 +1,4 @@
+{% load static %}
 {% load is_user %}
 {% is_user as is_user %}
 
@@ -12,61 +13,51 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="https://pluspng.com/img-png/instagram-png-instagram-png-icon-1024.png">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:2%">
+<nav class="navbar navbar-expand-lg navbar-light bg-light " style="margin-bottom:2%">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-                {% if is_user %}
+        <ul class="navbar-nav navbar-nav ml-auto">
+            {% if is_user %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 <li class="nav-item">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Add destination</a>
+                    <a class="nav-link" href="{% url 'create destination' %}">Add destination</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Add Photo</a>
+                    <a class="nav-link" href="{% url 'my destinations' %}">My Destinations</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'profile details' is_user.pk %}">Profile</a>
                 </li>
-                {% endif %}
-                {% if not is_user %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'create profile' %}">Register</a>
-                <li class="nav-item">
-                <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
-                    <li class="nav-item">
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'show home' %}">Home</a>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Dashboard</a>
-                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'show home' %}">Home</a>
+            <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contacts' %}">Contact</a>
+            <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="#">About us</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+            </li>
         </ul>
     </div>
 </nav>
 <div class="container">
 
-<p>
-    IS uSER {{ user }}
-</p>
-{% block page_content %}
-{% endblock %}
+    {% block page_content %}
+    {% endblock %}
 
 </div>
-<footer class="fixed-bottom card-footer ">
-    <div>@IvanYosifov Python developer</div>
-</footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -78,5 +69,7 @@
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
 </body>
-
+    <footer class="fixed-bottom card-footer bg-light">
+    <div>&copy;IvanYosifov Python developer</div>
+</footer>
 </html>

@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load is_user %}
+{% is_user as is_user %}
+
+{% block page_content %}
+    <div class="row justify-content-center">
+        <h2>Destination details </h2>
+
+        <img style="width: 80%"
+             src="{{ destination.photo }}" alt="">
+        <div class="position-sticky">
+            <h3 class="display-4">Country {{ destination.country.name }}</h3>
+            <h3 class="display-4">City: {{ destination.city }}</h3>
+            <h3 class="display-4">Date: {{ destination.date_of_journey }}</h3>
+            <p class="lead">{{ destination.description}}</p>
+            <hr class="my-4">
+            <div class="flex-row">
+                {% if is_user %}
+
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

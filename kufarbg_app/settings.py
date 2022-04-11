@@ -18,7 +18,9 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 )
 
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (
+    'django_countries',
+)
 
 KUFARBG_APPS = (
     'kufarbg_app.main_app',
@@ -62,7 +64,7 @@ WSGI_APPLICATION = 'kufarbg_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kufarbg_db',
+        'NAME': 'kufar_app_db',
         'USER': 'postgres',
         'PASSWORD': '1123QwER',
         'HOST': '127.0.0.1',
@@ -98,9 +100,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     BASE_DIR / 'staticfiles',
-)
+]
 
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
 MEDIA_URL = '/media/'

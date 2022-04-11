@@ -1,11 +1,11 @@
-{% extends 'base/base_test_index.html' %}
+{% extends 'base/base.html' %}
 
 
 
 {% block page_content %}
-    <form action="{% url 'delete profile' %}" method="post">
+    <form action="{% url 'delete profile' object.pk %}" method="post">
         {% csrf_token %}
-        {{ form }}
+        <p>Are you sure you want to delete "{{ profile.user }}"?</p>
         <button class="btn btn-primary">Delete</button>
     </form>
 {% endblock %}

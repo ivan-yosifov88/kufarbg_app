@@ -1,18 +1,22 @@
-{% extends 'base/base_test_index.html' %}
+{% extends 'base/base.html' %}
 
 
 
 {% block page_content %}
+    <div class="row justify-content-center">
+        <h2>User register</h2>
+    </div>
     <form action="{% url 'create profile' %}" method="post">
         {% csrf_token %}
         {{ form }}
         <button class="btn btn-primary">Register</button>
     </form>
+
     <div>
-        <label>
-            If you don't have registration please:
+        <label class="col text-right">
+            If you have registration please:
         </label>
-            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            <a href="{% url 'login' %}" class="btn btn-primary pull-right">Go to login</a>
     </div>
 
 {% endblock %}

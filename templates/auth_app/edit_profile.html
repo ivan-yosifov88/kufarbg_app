@@ -1,6 +1,9 @@
-{% extends 'base/base_test_index.html' %}
+{% extends 'base/base.html' %}
 
 {% block page_content %}
+    <div class="row justify-content-center">
+        <h2>Edit profile</h2>
+    </div>
     <form action="{% url 'edit profile' object.pk %}" method="post">
         {% csrf_token %}
         {{ form }}

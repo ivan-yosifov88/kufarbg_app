@@ -1,12 +1,13 @@
 import profile
 
-from django.contrib.auth import views as auth_views, get_user_model, login
+from django.contrib.auth import views as auth_views, get_user_model, login, logout
 from django.views import generic as views
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
-from kufarbg_app.auth_app.forms import UserRegistrationForm, EditProfileForm, DeleteProfileForm
-from kufarbg_app.auth_app.models import Profile
+from kufarbg_app.auth_app.forms import UserRegistrationForm, EditProfileForm, DeleteProfileForm, LoginForm, \
+    ChangePasswordForm
+from kufarbg_app.auth_app.models import Profile, AppUser
 
 
 class UserRegisterView(views.CreateView):
@@ -48,11 +49,19 @@ class DeleteProfileView(views.DeleteView):
     model = Profile
     form_class = DeleteProfileForm
     template_name = 'auth_app/delete_profile.html'
-    context_object_name = 'profile'
     success_url = reverse_lazy('show home')
+
+    def form_valid(self, form_class):
+        user = AppUser.objects.get(id=self.object.user_id)
+        result = super().form_valid(form_class)
+        print(user)
+        user.delete()
+        logout(self.request)
+        return result
 
 
 class UserLoginView(auth_views.LoginView):
+    form_class = LoginForm
     template_name = 'auth_app/login.html'
     success_url = reverse_lazy('show home')
 
@@ -63,6 +72,6 @@ class UserLoginView(auth_views.LoginView):
 
 
 class ChangePasswordView(auth_views.PasswordChangeView):
-    # add form-control class
+    form_class = ChangePasswordForm
     template_name = 'auth_app/change_password.html'
     success_url = reverse_lazy('show home')

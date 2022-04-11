@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="row justify-content-center">
+        <h2 class="display-4">Destination comment</h2>
+
+
+        <img style="width: 80%"
+             src="{{ destination.photo }}" alt="">
+        <div class="position-sticky">
+            <h3 class="display-4">Comment destination {{ destination.country.name }}</h3>
+            <hr class="my-4">
+            <div class="flex-row">
+            </div>
+        </div>
+
+    <div class="position-sticky">
+        <div class="flex-row">
+            <form action="{% url 'comment destination' destination.pk %}" method='post'>
+                {% csrf_token %}
+                {{ form }}
+                <button class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
