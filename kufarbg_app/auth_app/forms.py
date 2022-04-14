@@ -1,9 +1,7 @@
-import profile
-
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
 
-from kufarbg_app.auth_app.models import Profile, AppUser
+from kufarbg_app.auth_app.models import Profile
 from kufarbg_app.common.bootstrap_mixin import BootstrapFormControl
 
 UserModel = get_user_model()
@@ -16,13 +14,9 @@ class UserRegistrationForm(auth_forms.UserCreationForm, BootstrapFormControl):
         for field in ['email', 'password1', 'password2']:
             self.fields[field].help_text = None
 
-    # email = forms.EmailInput()
-    # password = forms.PasswordInput()
-    # confirm_password = forms.PasswordInput()
-
     class Meta:
         model = UserModel
-        fields = ('email', 'password1', 'password2', )
+        fields = ('email', 'password1', 'password2',)
         widgets = {
             'email': forms.EmailInput(
                 attrs={
@@ -82,11 +76,11 @@ class EditProfileForm(forms.ModelForm, BootstrapFormControl):
 
 
 class DeleteProfileForm(forms.ModelForm):
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     super().apply_class_form_control(self.fields)
-    #     for disabled in self.fields:
-    #         self.fields[disabled].widget.attrs['disabled'] = 'disabled'
+
+    def save(self, commit=True):
+        super().save(commit=commit)
+        self.instance.delete()
+        return self.instance
 
     class Meta:
         model = Profile

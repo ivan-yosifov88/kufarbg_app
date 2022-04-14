@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% load is_user %}
+{% is_user as is_user %}
+
+{% block page_content %}
+    <div class="row justify-content-center">
+        <h2>Delete destination</h2>
+    </div>
+    <form action="{% url 'delete destination' object.pk %}" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete destination "{{ object.country.name }}"?</p>
+        <button class="btn btn-primary">Delete</button>
+    </form>
+{% endblock %}

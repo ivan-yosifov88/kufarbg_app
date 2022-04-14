@@ -11,7 +11,7 @@ from kufarbg_app.common.validators import MinDateValidator, MaxDateValidator
 UserModel = get_user_model()
 
 
-class UserTrips(models.Model):
+class Destinations(models.Model):
     CITY_MAX_LENGTH = 200
     CITY_MIN_LENGTH = 2
     DESCRIPTION_TEXT_MAX_LENGTH = 500
@@ -53,12 +53,18 @@ class UserTrips(models.Model):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self):
+        return f"Trip to {self.country.name}"
+
+    class Meta:
+        verbose_name_plural = "Destinations"
+
 
 class Comments(models.Model):
     MAX_COMMENT_LENGTH = 250
 
     trip = models.ForeignKey(
-        UserTrips,
+        Destinations,
         on_delete=models.CASCADE,
     )
     author = models.ForeignKey(
@@ -71,26 +77,23 @@ class Comments(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name_plural = "Comments"
 
-class Like(models.Model):
-    like = models.OneToOneField(
-        UserTrips,
-        on_delete=models.CASCADE,
-    )
-    user_likes = models.ManyToManyField(
+
+class Likes(models.Model):
+    user = models.ForeignKey(
         UserModel,
+        on_delete=models.CASCADE
+    )
+    trip = models.ForeignKey(
+        Destinations,
+        on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name_plural = "Likes"
 
-class DisLike(models.Model):
-    dislike = models.OneToOneField(
-        UserTrips,
-        on_delete=models.CASCADE,
-    ),
-    users_dislikes = models.ManyToManyField(
-        UserModel,
-    )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+

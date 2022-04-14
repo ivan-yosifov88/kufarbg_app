@@ -2,14 +2,14 @@ from django.core.validators import RegexValidator, MinLengthValidator
 from django.db import models
 
 
-class HomePagePhotos(models.Model):
+class HomePageData(models.Model):
+    DEFAULT_THOUGHTS = "Life is wonderful!"
     DEFAULT_IMAGE_URL = 'https://basecampadventure.com/wp-content/uploads/2018/07/Travel-Related-Links-1290x540.png'
     site_images_url = models.URLField()
-
-
-class HomePageThoughts(models.Model):
-    DEFAULT_THOUGHTS = "Life is wonderful!"
     good_thoughts = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "HomePageData"
 
 
 class SiteOwnerData(models.Model):
@@ -38,6 +38,15 @@ class SiteOwnerData(models.Model):
     )
     address = models.TextField()
 
+    class Meta:
+        verbose_name_plural = "SiteOwnerData"
+
 
 class AboutUsData(models.Model):
-    site_owners_description = models.TextField()
+    ABOUT_US_MAX_LENGTH = 500
+    site_owners_description = models.TextField(
+        max_length=ABOUT_US_MAX_LENGTH,
+    )
+
+    class Meta:
+        verbose_name_plural = "AboutUsData"

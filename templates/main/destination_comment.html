@@ -13,13 +13,14 @@
             </div>
         </div>
 
-    <div class="position-sticky">
-        <div class="flex-row">
-            <form action="{% url 'comment destination' destination.pk %}" method='post'>
-                {% csrf_token %}
-                {{ form }}
-                <button class="btn btn-primary">Send</button>
-            </form>
+        <div class="position-sticky">
+            <div class="flex-row">
+                <form action="{% url 'comment destination' destination.pk %}" method='post'>
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn btn-primary">Send</button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

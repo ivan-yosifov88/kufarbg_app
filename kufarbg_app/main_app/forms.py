@@ -1,11 +1,9 @@
 import datetime
 
 from django import forms
-
-from kufarbg_app.auth_app.models import Profile
 from kufarbg_app.common.bootstrap_mixin import BootstrapFormControl
 from kufarbg_app.common.validators import validate_only_letters
-from kufarbg_app.main_app.models import UserTrips, Comments
+from kufarbg_app.main_app.models import Destinations, Comments
 
 
 class ContactForm(forms.Form, BootstrapFormControl):
@@ -34,10 +32,13 @@ class ContactForm(forms.Form, BootstrapFormControl):
             }
         )
     )
+    bot_catcher = forms.CharField(required=False, widget=forms.HiddenInput)
 
-
-#     add boot catcher
-# i may add subject choice
+    def clean_bot_catcher(self):
+        bot_catcher = self.cleaned_data['bot_catcher']
+        if len(bot_catcher) > 0:
+            raise forms.ValidationError("I got you BOT")
+        return bot_catcher
 
 
 class CreateDestinationForm(forms.ModelForm, BootstrapFormControl):
@@ -56,7 +57,7 @@ class CreateDestinationForm(forms.ModelForm, BootstrapFormControl):
 
     class Meta:
         DESCRIPTION_ROWS_COUNT = 5
-        model = UserTrips
+        model = Destinations
         fields = '__all__'
         exclude = ('user',)
         widgets = {
@@ -64,7 +65,7 @@ class CreateDestinationForm(forms.ModelForm, BootstrapFormControl):
                 attrs={
                     'year': datetime.date.today().year
                 }, years=range(
-                    UserTrips.MIN_DATE.year, UserTrips.MAX_DATE.year)),
+                    Destinations.MIN_DATE.year, Destinations.MAX_DATE.year)),
             'country': forms.Select(),
             'city': forms.TextInput(
                 attrs={
@@ -85,22 +86,28 @@ class CreateDestinationForm(forms.ModelForm, BootstrapFormControl):
         }
 
 
-class CreatePhotoForm(forms.ModelForm, BootstrapFormControl):
-
-    def __init__(self, destination, *args, **kwargs):
+class EditDestinationForm(forms.ModelForm, BootstrapFormControl):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.destination = destination
         super().apply_class_form_control(self.fields)
 
+    class Meta:
+        model = Destinations
+        exclude = ('user',)
+
+
+class DeleteDestinationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     def save(self, commit=True):
-        photo = super().save(commit=False)
-        photo.user = self.destination
+        super().save(commit=commit)
+        self.instance.delete()
+        return self.instance
 
-        if commit:
-            photo.save()
-        return photo
-
-    photo = forms.URLField()
+    class Meta:
+        model = Destinations
+        fields = ()
 
 
 class DestinationCommentForm(forms.ModelForm, BootstrapFormControl):

@@ -5,9 +5,16 @@ from kufarbg_app.auth_app.models import Profile, AppUser
 
 @admin.register(AppUser)
 class UsersAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        'email', 'date_joined',
+    )
 
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        'first_name', 'last_name',
+        'phone_number', 'date_of_birth',
+        'image_url', 'gender',
+        'user',
+    )

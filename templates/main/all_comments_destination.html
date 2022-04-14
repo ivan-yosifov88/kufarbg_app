@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% load is_user %}
+
+{% block page_content %}
+    <div class="row justify-content-center">
+
+        <img style="width: 80%"
+             src="{{ destination.photo }}" alt="">
+        <div class="position-sticky">
+            <h3 class="display-4">Country {{ destination.country.name }}</h3>
+            <p class="lead">{{ destination.description }}</p>
+            <hr class="my-4">
+        </div>
+    </div>
+    {% for comment in object_list%}
+        <p class="lead">Author: {{ comment.author }}</p>
+        <p class="lead">Comment: {{ comment.comment }}</p>
+    {% endfor %}
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+            {% endif %}
+
+            <span class="page-item">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </ul>
+
+{% endblock %}

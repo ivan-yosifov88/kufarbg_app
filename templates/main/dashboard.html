@@ -1,14 +1,20 @@
-{% extends 'base/base.html' %}
+    {% extends 'base/base.html' %}
+{% load get_likes_count %}
+{% load get_comment_count %}
 {% load is_user %}
 {% is_user as is_user %}
 
+
 {% block page_content %}
     <div class="row justify-content-center">
+
+
         <h2>All destinations </h2>
+
     </div>
     {% if destinations %}
         <div class="row justify-content-center">
-            {% for  destination in object_list %}
+            {% for destination in object_list %}
                 <div class="card" style="width: 15rem;">
                     <img src="{{ destination.photo }}" class="card-img-top img-thumbnail" style="height: 10rem;"
                          alt="{{ destination.description|truncatechars:30 }}">
@@ -17,31 +23,37 @@
                         <p class="card-text">{{ destination.description|truncatechars:30 }}</p>
                         <a href="{% url 'destination details' destination.pk %}"
                            class="btn btn-primary top-left">Read more</a>
-                        {% if comments %}
-                            <p>{{ True }}</p>
+                        {% if likes %}
+                            <p class="card-text"><i class="fas fa-heart"></i>{{ likes|get_likes_count:destination.id }}
+                            </p>
                         {% endif %}
-                        <a href="{% url 'comment destination' destination.id %}" class="btn btn-primary top-right">Comment</a>
-                        <a href="#">Like<i class="fa fa-heart-o bottom-right" aria-hidden="true"></i></a>
+                        {% if comments %}
+                            <p class="card-text"><i
+                                    class="fas fa-comment-dots"></i>{{ comments|get_comment_count:destination.id }}</p>
+                        {% endif %}
+
                     </div>
                 </div>
             {% endfor %}
 
         </div>
-        <div class="row justify-content-center">
+
+        <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-                <a href="?page=1" class="btn btn-primary">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}"class="btn btn-primary">previous</a>
+                <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
             {% endif %}
 
-                <span class="current">
+            <span class="page-item">
                     Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}"  class="btn btn-primary">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}"  class="btn btn-primary">last &raquo;</a>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
             {% endif %}
-        </div>
+        </ul>
     {% else %}
         <div class="row justify-content-center">
             <h2>There are no destinations yet!</h2>

@@ -1,5 +1,11 @@
 from pathlib import Path
 
+# TODO UNMARK PASSWORD
+# TODO ADD .ENV
+# TODO ABOUT US CONTACT
+# TODO 400 403 404
+# TODO MEDIA FILES
+# TODO SOME BASIC STYLE WORK
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -60,7 +66,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kufarbg_app.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -88,8 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -107,9 +110,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
 MEDIA_URL = '/media/'
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

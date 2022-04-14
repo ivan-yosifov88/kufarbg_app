@@ -1,10 +1,26 @@
 {% extends 'base/base.html' %}
 {% load is_user %}
-{% is_user as is_user %}
 
 {% block page_content %}
     <div class="row justify-content-center">
         <h2>Destination details </h2>
+    </div>
+    <div class="row justify-content-center">
+        {% if is_owner %}
+
+            <a href="{% url 'delete destination' destination.id %}" class="btn btn-primary ">Delete</a>
+            <a href="{% url 'edit destination' destination.id %}" class="btn btn-primary ">Edit</a>
+        {% elif is_authenticated %}
+            <a href="{% url 'comment destination' destination.id %}"
+               class="btn btn-primary top-right">Comment</a>
+            {% if has_liked %}
+                <a href="{% url 'like destination' destination.id %}">Dislike<i class="fas fa-thumbs-down"></i></a>
+            {% else %}
+                <a href="{% url 'like destination' destination.id %}">Like<i class="fas fa-thumbs-up"></i></a>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="row justify-content-center">
 
         <img style="width: 80%"
              src="{{ destination.photo }}" alt="">
@@ -14,11 +30,17 @@
             <h3 class="display-4">Date: {{ destination.date_of_journey }}</h3>
             <p class="lead">{{ destination.description}}</p>
             <hr class="my-4">
-            <div class="flex-row">
-                {% if is_user %}
-
-                {% endif %}
-            </div>
+        </div>
+        <div>
+            {% for comment in comments %}
+                <p class="lead">User: {{ comment.author }}</p>
+                <p class="lead">Comment: {{ comment.comment }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            {% if comments_count > 3 %}
+                <a href="{% url 'all destination comments' destination.id %}">Show all comments</a>
+            {% endif %}
         </div>
 
 
