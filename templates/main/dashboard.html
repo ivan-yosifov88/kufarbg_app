@@ -15,16 +15,16 @@
     {% if destinations %}
         <div class="row justify-content-center">
             {% for destination in object_list %}
-                <div class="card" style="width: 15rem;">
+                <div class="card" style="width: 15rem; background-color: #F7ECDE">
                     <img src="{{ destination.photo }}" class="card-img-top img-thumbnail" style="height: 10rem;"
                          alt="{{ destination.description|truncatechars:30 }}">
                     <div class="card-body">
                         <h5 class="card-title">Destination to: {{ destination.country.name }}</h5>
                         <p class="card-text">{{ destination.description|truncatechars:30 }}</p>
                         <a href="{% url 'destination details' destination.pk %}"
-                           class="btn btn-primary top-left">Read more</a>
+                           class="btn btn-primary top-left" style="background-color: #54BAB9">Read more</a>
                         {% if likes %}
-                            <p class="card-text"><i class="fas fa-heart"></i>{{ likes|get_likes_count:destination.id }}
+                            <p class="card-text"><i class="fas fa-heart" ></i>{{ likes|get_likes_count:destination.id }}
                             </p>
                         {% endif %}
                         {% if comments %}
@@ -38,22 +38,39 @@
 
         </div>
 
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                </li>
-            {% endif %}
+        <div class="row justify-content-center">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" style="background-color: #54BAB9" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
 
-            <span class="page-item">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
+                        {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link disabled" style="background-color: #54BAB9" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" style="background-color: #54BAB9" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" style="background-color: #54BAB9" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="row justify-content-center">
+            <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+        </div>
 
-            {% if page_obj.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-            {% endif %}
-        </ul>
     {% else %}
         <div class="row justify-content-center">
             <h2>There are no destinations yet!</h2>

@@ -9,7 +9,7 @@
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         {{ form }}
-            <button class="btn btn-primary float-right">Login</button>
+            <button class="btn btn-primary float-right" style="background-color: #54BAB9">Login</button>
     </form>
     <br>
     <br>
@@ -17,7 +17,7 @@
         <h5 class="row justify-content-center">If you don't have registration please</h5>
     </div>
     <div class="row justify-content-center">
-        <a href="{% url 'create profile' %}" class="btn btn-primary">Go to register</a>
+        <a href="{% url 'create profile' %}" class="btn btn-primary" style="background-color: #54BAB9" >Go to register</a>
     </div>
 
 {% endblock %}

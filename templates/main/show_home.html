@@ -3,21 +3,21 @@
 {% is_user as is_user %}
 
 {% block page_content %}
-    <div class="jumbotron">
+    <div class="jumbotron" style="background-color: #F7ECDE">
         <img style="width: 100%"
              src="{{ photos }}" alt="">
         <div class="position-sticky">
             {% if is_user %}
                 <h1>Hello {{ user }}</h1>
             {% else %}
-                <h1 class="display-4">Welcome to site name please login or register!</h1>
+                <h1 class="display-4">Welcome to kufarbg please login or register!</h1>
             {% endif %}
             <p class="lead">{{ thoughts }}</p>
             <hr class="my-4">
             <div class="flex-row">
                 {% if not is_user %}
-                    <a href="{% url 'login' %}" class="btn btn-lg btn-secondary">Login</a>
-                    <a href="{% url 'create profile' %}" class="btn btn-lg btn-secondary">Register</a>
+                    <a href="{% url 'login' %}" class="btn btn-lg btn-secondary" style="background-color: #54BAB9">Login</a>
+                    <a href="{% url 'create profile' %}" class="btn btn-lg btn-secondary" style="background-color: #54BAB9">Register</a>
                 {% endif %}
             </div>
         </div>

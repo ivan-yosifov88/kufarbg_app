@@ -16,7 +16,7 @@
         <form action="{% url 'comment destination' destination.pk %}" method='post'>
             {% csrf_token %}
             {{ form }}
-            <button class="btn btn-primary right">Send</button>
+            <button class="btn btn-primary float-right" style="background-color: #54BAB9" >Send</button>
         </form>
     </div>
 {% endblock %}

@@ -6,24 +6,27 @@
         <h2>Destination details </h2>
     </div>
     <div class="row justify-content-center">
-        <img style="width: 40%"
+        <img style="width: 70%"
              src="{{ destination.photo }}" alt="">
     </div>
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
+            <h3>Destination  </h3>
+        </div>
+     <div class="row justify-content-center">
         <ul class="list-group">
-            <li class="list-group-item">Country: {{ destination.country.name }}</li>
-            <li class="list-group-item">City: {{ destination.city }}</li>
-            <li class="list-group-item">Date: {{ destination.date_of_journey }}</li>
-            <li class="list-group-item">Description: {{ destination.description }}</li>
+            <li class="list-group-item" style="background-color: #E9DAC1">Country: {{ destination.country.name }}</li>
+            <li class="list-group-item" style="background-color: #E9DAC1">City: {{ destination.city }}</li>
+            <li class="list-group-item" style="background-color: #E9DAC1">Date: {{ destination.date_of_journey }}</li>
+            <li class="list-group-item" style="background-color: #E9DAC1">Description: {{ destination.description }}</li>
         </ul>
     </div>
     <div class="row justify-content-center">
         {% if is_owner %}
-            <a href="{% url 'delete destination' destination.id %}" class="btn btn-primary">Delete</a>
-            <a href="{% url 'edit destination' destination.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete destination' destination.id %}" class="btn btn-primary" style="background-color: #54BAB9">Delete</a>
+            <a href="{% url 'edit destination' destination.id %}" class="btn btn-primary" style="background-color: #54BAB9">Edit</a>
         {% elif is_authenticated %}
             <a href="{% url 'comment destination' destination.id %}"
-               class="btn btn-primary top-right">Comment</a>
+               class="btn btn-primary top-right" style="background-color: #54BAB9">Comment</a>
             {% if has_liked %}
                 <a href="{% url 'like destination' destination.id %}">Dislike<i class="fas fa-thumbs-down"></i></a>
             {% else %}
@@ -36,9 +39,9 @@
         <div class="row justify-content-center">
             <ul class="list-group">
                 {% for comment in comments %}
-                    <li class="list-group-item justify-content-between" style="background-color: cyan">
+                    <li class="list-group-item justify-content-between" style="background-color: #E9DAC1">
                         {{ comment.comment }}
-                        <span class="badge bg-primary rounded-pill">{{ comment.author }}</span>
+                        <span class="badge rounded-pill" style="background-color: #54BAB9">{{ comment.author }}</span>
                     </li>
                 {% endfor %}
             </ul>
@@ -46,7 +49,7 @@
     {% endif %}
     <div class="row justify-content-center">
         {% if comments_count > 3 %}
-            <a href="{% url 'all destination comments' destination.id %}" class="btn btn-primary">Show all comments</a>
+            <a href="{% url 'all destination comments' destination.id %}" class="btn btn-primary" style="background-color: #54BAB9">Show all comments</a>
         {% endif %}
     </div>
     <br>

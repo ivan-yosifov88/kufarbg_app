@@ -13,10 +13,10 @@
         <p class="lead">{{ thoughts }}</p>
         <hr class="my-4">
         <div class="flex-row">
-            <form action="{% url 'contacts' %}" method='post'>
+            <form action="{% url 'contacts' %} " method='post'>
                 {% csrf_token %}
                 {{ form }}
-                <button class="btn btn-primary">Send</button>
+                <button class="btn btn-primary float-right" style="background-color: #54BAB9" >Send</button>
             </form>
         </div>
     </div>

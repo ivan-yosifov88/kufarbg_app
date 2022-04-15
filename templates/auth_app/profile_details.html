@@ -39,9 +39,9 @@
 
     {% if is_owner %}
         <div class="row justify-content-center">
-            <a href="{% url 'edit profile' object.pk %}" class="btn btn-primary">Edit Profile</a>
+            <a href="{% url 'edit profile' object.pk %}" class="btn btn-primary" style="background-color: #54BAB9">Edit Profile</a>
             <a href="{% url 'delete profile' object.pk %}" class="btn btn-danger">Delete Profile</a>
-            <a href="{% url 'change pass' %}" class="btn btn-primary">Change Password</a>
+            <a href="{% url 'change pass' %}" class="btn btn-primary" style="background-color: #54BAB9">Change Password</a>
         </div>
     {% endif %}
 {% endblock %}
