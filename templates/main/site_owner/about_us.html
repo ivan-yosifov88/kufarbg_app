@@ -1,7 +1,54 @@
 {% extends 'base/base.html' %}
-{% load is_user %}
-{% is_user as is_user %}
-
+{% load static %}
 {% block page_content %}
-About Us Info
+    <div class="row justify-content-center">
+        <h2>About Us</h2>
+    </div>
+    <br>
+    <br>
+    {% if owner_data %}
+        <div class="row justify-content-center">
+            <h3>Welcome to {{ owner_data.company_name }}</h3><br>
+        </div>
+    {% endif %}
+    <br>
+    <div class="row justify-content-center">
+        <img style="width: 60%"
+             src="{% static '/images/frasi-sulla-felicita-da-usare-sui-social-maxw-1280-1079x720-1-e1592910634866(1).jpg' %}"
+             alt="Nice picture">
+    </div>
+    <br>
+    <div class="row justify-content-center">
+
+        <p class="lead text-xl-start">
+            We from the kufarbg team created this site in order to inspire more and more people to pursue their dreams
+            and embark on the journeys and adventures that the planet Earth provides us.
+            The authors of the articles are creative people with a passion for writing, photography and art. Nature and
+            soul
+            travelers and seekers of emotions and adventures gather here their travelogues and photographs, which
+            reflect
+            their personal experiences from around the world.
+            Here you can find information and personal stories, as well as various suggestions for activities and
+            activities
+            offered by your chosen destination.
+            Of course, each nation differs in its food and traditions, so it is important for us to note useful
+            information
+            about food, customs and traditions that are characteristic of the place where you dream of being. Pack your
+            suitcase
+            and be a part of our story. Welcome!
+        </p>
+    </div>
+    <br>
+    <br>
+    {% if owner_data %}
+        <div class="row justify-content-center">
+            <h4>Email: {{ owner_data.email }}</h4>
+        </div>
+        <div class="row justify-content-center">
+            <h4>Phone: {{ owner_data.phone_number }}</h4>
+        </div>
+        <div class="row justify-content-center">
+            <h4>Address: {{ owner_data.address }}</h4>
+        </div>
+    {% endif %}
 {% endblock %}

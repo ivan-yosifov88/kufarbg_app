@@ -32,19 +32,18 @@ class ShowHomeView(views.TemplateView):
         return context
 
 
-class ShowContactView(views.FormView):
+class ShowAboutView(views.TemplateView):
     form_class = ContactForm
-    template_name = 'main/site_owner/contact_us.html'
+    template_name = 'main/site_owner/about_us.html'
     success_url = reverse_lazy('show_home')
 
     def get_context_data(self, **kwargs):
         owner_data = SiteOwnerData.objects.all()
-        # SiteOwnerData.objects.filter(pk=1).exists()
         context = super().get_context_data(**kwargs)
         if owner_data:
             context['owner_data'] = owner_data[0]
         return context
 
-
-class ShowAboutView(views.TemplateView):
-    template_name = 'main/site_owner/about_us.html'
+#
+# class ShowAboutView(views.TemplateView):
+#     template_name = 'main/site_owner/about_us.html'

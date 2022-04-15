@@ -1,7 +1,7 @@
 from django.urls import path
 
 from kufarbg_app.main_app.views.comments import DestinationCommentView, AllDestinationComments
-from kufarbg_app.main_app.views.generic import ShowHomeView, ShowContactView, ShowAboutView
+from kufarbg_app.main_app.views.generic import ShowHomeView, ShowAboutView, ShowAboutView
 from kufarbg_app.main_app.views.destinations import CreateDestinationView, DestinationsView, DestinationDetailsView, \
     MyDestinationDetailsView, EditDestinationView, \
     DeleteDestinationView
@@ -18,6 +18,5 @@ urlpatterns = (
     path('<int:pk>/like_destination/', like_destination, name='like destination'),
     path('<int:pk>/all_comments/', AllDestinationComments.as_view(), name='all destination comments'),
     path('', ShowHomeView.as_view(), name='show home'),
-    path('contacts/', ShowContactView.as_view(), name='contacts'),
-    path('about/', ShowAboutView.as_view(), name='about us')
+    path('about/', ShowAboutView.as_view(), name='about us'),
 )

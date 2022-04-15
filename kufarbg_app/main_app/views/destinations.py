@@ -6,10 +6,10 @@ from kufarbg_app.main_app.forms import CreateDestinationForm, DeleteDestinationF
 from kufarbg_app.main_app.models import Destinations, Comments, Likes
 
 
-class CreateDestinationView(view.CreateView):
+class CreateDestinationView(auth_mixins.LoginRequiredMixin, view.CreateView):
     form_class = CreateDestinationForm
     template_name = 'main/create_destination.html'
-    success_url = reverse_lazy('show home')
+    success_url = reverse_lazy('dashboard')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -25,8 +25,12 @@ class EditDestinationView(auth_mixins.LoginRequiredMixin, view.UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         handler = super(EditDestinationView, self).dispatch(request, *args, **kwargs)
-        if self.object.user != request.user:
-            return HttpResponseForbidden("403 Forbidden Can't touch this.")
+        try:
+            owner_user = self.object.user
+        except AttributeError:
+            return HttpResponseForbidden("403 Forbidden")
+        if owner_user != request.user:
+            return HttpResponseForbidden("403 Forbidden")
         return handler
 
 
@@ -38,8 +42,12 @@ class DeleteDestinationView(auth_mixins.LoginRequiredMixin, view.DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         handler = super(DeleteDestinationView, self).dispatch(request, *args, **kwargs)
-        if self.object.user != request.user:
-            return HttpResponseForbidden("403 Forbidden Can't touch this.")
+        try:
+            owner_user = self.object.user
+        except AttributeError:
+            return HttpResponseForbidden("403 Forbidden")
+        if owner_user != request.user:
+            return HttpResponseForbidden("403 Forbidden")
         return handler
 
 
@@ -74,7 +82,7 @@ class DestinationDetailsView(view.DetailView):
         return context
 
 
-class MyDestinationDetailsView(view.ListView):
+class MyDestinationDetailsView(auth_mixins.LoginRequiredMixin, view.ListView):
     model = Destinations
     template_name = 'main/my_destinations.html'
     context_object_name = 'profile'

@@ -30,8 +30,12 @@ class UserDetailsView(auth_mixins.LoginRequiredMixin, views.DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         handler = super(UserDetailsView, self).dispatch(request, *args, **kwargs)
-        if self.object.user != request.user:
-            return HttpResponseForbidden("403 Forbidden Can't touch this.")
+        try:
+            owner_user = self.object.user
+        except AttributeError:
+            return HttpResponseForbidden("403 Forbidden")
+        if owner_user != request.user:
+            return HttpResponseForbidden("403 Forbidden")
         return handler
 
     def get_context_data(self, **kwargs):
@@ -49,8 +53,12 @@ class EditProfileView(auth_mixins.LoginRequiredMixin, views.UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         handler = super(EditProfileView, self).dispatch(request, *args, **kwargs)
-        if self.object.user != request.user:
-            return HttpResponseForbidden("403 Forbidden Can't touch this.")
+        try:
+            owner_user = self.object.user
+        except AttributeError:
+            return HttpResponseForbidden("403 Forbidden")
+        if owner_user != request.user:
+            return HttpResponseForbidden("403 Forbidden")
         return handler
 
 
@@ -62,8 +70,12 @@ class DeleteProfileView(auth_mixins.LoginRequiredMixin, views.DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         handler = super(DeleteProfileView, self).dispatch(request, *args, **kwargs)
-        if self.object.user != request.user:
-            return HttpResponseForbidden("403 Forbidden Can't touch this.")
+        try:
+            owner_user = self.object.user
+        except AttributeError:
+            return HttpResponseForbidden("403 Forbidden")
+        if owner_user != request.user:
+            return HttpResponseForbidden("403 Forbidden")
         return handler
 
     def form_valid(self, form_class):
