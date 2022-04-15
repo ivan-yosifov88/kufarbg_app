@@ -9,6 +9,6 @@
     <form action="{% url 'edit destination' object.id %}" method="post">
         {% csrf_token %}
         {{ form }}
-        <button class="btn btn-primary">Edit</button>
+        <button class="btn btn-primary float-right">Edit</button>
     </form>
 {% endblock %}

@@ -8,7 +8,12 @@
     </div>
     <form action="{% url 'delete destination' object.pk %}" method="post">
         {% csrf_token %}
-        <p>Are you sure you want to delete destination "{{ object.country.name }}"?</p>
-        <button class="btn btn-primary">Delete</button>
+        <div class="row justify-content-center">
+            <p>Are you sure you want to delete destination "{{ object.country.name }}"?</p>
+        </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-danger">Delete</button>
+        </div>
     </form>
 {% endblock %}
+

@@ -4,23 +4,19 @@
         <h2 class="display-4">Destination comment</h2>
 
 
-        <img style="width: 80%"
+        <img style="width: 60%"
              src="{{ destination.photo }}" alt="">
-        <div class="position-sticky">
-            <h3 class="display-4">Comment destination {{ destination.country.name }}</h3>
-            <hr class="my-4">
-            <div class="flex-row">
-            </div>
-        </div>
+    </div>
+    <div class="row justify-content-center">
+        <h3 class="display-5">Comment destination {{ destination.country.name }}</h3>
+    </div>
 
-        <div class="position-sticky">
-            <div class="flex-row">
-                <form action="{% url 'comment destination' destination.pk %}" method='post'>
-                    {% csrf_token %}
-                    {{ form }}
-                    <button class="btn btn-primary">Send</button>
-                </form>
-            </div>
-        </div>
+
+    <div class="row justify-content-center">
+        <form action="{% url 'comment destination' destination.pk %}" method='post'>
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn btn-primary right">Send</button>
+        </form>
     </div>
 {% endblock %}

@@ -5,7 +5,11 @@
 {% block page_content %}
     <form action="{% url 'delete profile' object.pk %}" method="post">
         {% csrf_token %}
-        <p>Are you sure you want to delete "{{ profile.user }}"?</p>
-        <button class="btn btn-primary">Delete</button>
+        <div class="row justify-content-center">
+            <p>Are you sure you want to delete "{{ profile.user }}"?</p>
+        </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-danger">Delete</button>
+        </div>
     </form>
 {% endblock %}

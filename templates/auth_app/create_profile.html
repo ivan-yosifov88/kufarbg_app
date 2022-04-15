@@ -9,14 +9,15 @@
     <form action="{% url 'create profile' %}" method="post">
         {% csrf_token %}
         {{ form }}
-        <button class="btn btn-primary">Register</button>
+        <button class="btn btn-primary float-right">Register</button>
     </form>
-
-    <div>
-        <label class="col text-right">
-            If you have registration please:
-        </label>
-            <a href="{% url 'login' %}" class="btn btn-primary pull-right">Go to login</a>
+    <br>
+    <br>
+    <div class="row justify-content-center">
+        <h5 class="row justify-content-center">You already have registration please</h5>
+    </div>
+    <div class="row justify-content-center">
+        <a href="{% url 'login' %}" class="btn btn-primary pull-right">Go to login</a>
     </div>
 
 {% endblock %}

@@ -9,13 +9,15 @@
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         {{ form }}
-        <button class="btn btn-primary">Login</button>
+            <button class="btn btn-primary float-right">Login</button>
     </form>
-     <div>
-        <label>
-            If you don't have registration please:
-        </label>
-            <a href="{% url 'create profile' %}" class="btn btn-primary">Go to register</a>
+    <br>
+    <br>
+    <div class="row justify-content-center">
+        <h5 class="row justify-content-center">If you don't have registration please</h5>
+    </div>
+    <div class="row justify-content-center">
+        <a href="{% url 'create profile' %}" class="btn btn-primary">Go to register</a>
     </div>
 
 {% endblock %}

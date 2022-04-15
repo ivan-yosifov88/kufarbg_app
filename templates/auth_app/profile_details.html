@@ -11,27 +11,26 @@
             {% if profile.image_url %}
                 <div class="d-inline p-2 w-50">
                     <img src="{{ profile.image_url }}"
-                         class="w-50 rounded mx-auto d-block" alt="description">
+                         class="w-70 rounded mx-auto d-block" alt="{{ profile.user}}">
                 </div>
             {% endif %}
             <div class="d-inline p-2 w-50">
                 <div class=""></div>
                 <div class="d-flex flex-column">
-{#                    <h2>Profile details</h2>#}
                     {% if profile.first_name and profile.last_name %}
-                        <h5><u>Name:</u> {{ profile.full_name }}</h5>
+                        <h5>Name: {{ profile.full_name }}</h5>
                     {% endif %}
                     {% if profile.date_of_birth %}
-                        <h5><u>Age:</u> {{ profile.age }}</h5>
+                        <h5>Age: {{ profile.age }}</h5>
                     {% endif %}
                     {% if profile.email %}
-                        <h5><u>Email:</u> {{ profile.email }}</h5>
+                        <h5>Email: {{ profile.email }}</h5>
                     {% endif %}
                     {% if profile.phone_number %}
-                        <h5><u>Phone number:</u> {{ profile.phone_number }}</h5>
+                        <h5>Phone number: {{ profile.phone_number }}</h5>
                     {% endif %}
                     {% if profile.gender %}
-                        <h5><u>Gender:</u> {{ profile.gender }}</h5>
+                        <h5>Gender: {{ profile.gender }}</h5>
                     {% endif %}
                 </div>
             </div>
