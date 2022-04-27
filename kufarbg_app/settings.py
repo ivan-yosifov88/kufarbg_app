@@ -7,6 +7,7 @@ from pathlib import Path
 # TODO 400 403 404
 # TODO MEDIA FILES
 # TODO SOME BASIC STYLE WORK
+from cloudinary.templatetags import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -14,7 +15,10 @@ SECRET_KEY = 'django-insecure-%e!%5_ro!l#szp_=+9w^k!qd@y6_loe+urkz^a)8v+*7c87rin
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'https://kufarbg.herokuapp.com/',
+]
 
 DJANGO_APPS = (
     'django.contrib.admin',
@@ -67,13 +71,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kufarbg_app.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'kufar_app_db',
+#         'USER': 'postgres',
+#         'PASSWORD': '1123QwER',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kufar_app_db',
-        'USER': 'postgres',
-        'PASSWORD': '1123QwER',
-        'HOST': '127.0.0.1',
+        'NAME': 'd92ruocard477h',
+        'USER': 'kucbfzfouvypyj',
+        'PASSWORD': '9c9e99cfc4e905b517136d859a14caaad8dc49b1fd4c45800be117476d64427a',
+        'HOST': 'ec2-52-48-159-67.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -102,11 +116,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / 'static',
 )
 
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
@@ -121,3 +135,9 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = 'auth_app.AppUser'
 
 LOGOUT_REDIRECT_URL = '/'
+
+cloudinary.config(
+    cloud_name="hrrbsagau",
+    api_key="779171527341692",
+    api_secret="XXmisQhptqTUgtX0Hi3Fa3fSN9I"
+)
