@@ -18,8 +18,6 @@ dash-html-components==2.0.0
 dash-table==5.0.0
 dbus-python==1.2.16
 defusedxml==0.7.1
-distro==1.4.0
-distro-info===0.23ubuntu1
 Django==4.0.2
 django-bootstrap-datepicker-plus==4.0.0
 django-countries==7.3.2
@@ -100,8 +98,6 @@ systemd-python==234
 tenacity==8.0.1
 toml==0.10.2
 typing-extensions==4.1.1
-ubuntu-advantage-tools==27.7
-ubuntu-drivers-common==0.0.0
 ufw==0.36
 unattended-upgrades==0.1
 urllib3==1.25.8
