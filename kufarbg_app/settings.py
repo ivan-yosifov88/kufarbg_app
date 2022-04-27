@@ -7,7 +7,7 @@ from pathlib import Path
 # TODO 400 403 404
 # TODO MEDIA FILES
 # TODO SOME BASIC STYLE WORK
-from cloudinary.templatetags import cloudinary
+import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -116,11 +116,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    BASE_DIR / 'static',
+    os.path.join(BASE_DIR, 'static'),
 )
 
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
