@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             {% for  destination in object_list %}
                 <div class="card" style="width: 15rem; background-color: #F7ECDE">
-                    <img src="{{ destination.photo }}" class="card-img-top img-thumbnail" style="height: 10rem;"
+                    <img src="{{ destination.photo.url   }}" class="card-img-top img-thumbnail" style="height: 10rem;"
                          alt="{{ destination.description|truncatechars:30 }}">
                     <div class="card-body">
                         <h5 class="card-title">Destination to: {{ destination.country.name }}</h5>

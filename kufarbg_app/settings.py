@@ -1,12 +1,11 @@
 import os
 from pathlib import Path
 
-# TODO UNMARK PASSWORD
-# TODO ADD .ENV
+
 # TODO ABOUT US CONTACT
 # TODO 400 403 404
 # TODO MEDIA FILES
-# TODO SOME BASIC STYLE WORK
+# TODO logging  
 import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent

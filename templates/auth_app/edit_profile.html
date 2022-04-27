@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <h2>Edit profile</h2>
     </div>
-    <form action="{% url 'edit profile' object.pk %}" method="post">
+    <form action="{% url 'edit profile' object.pk %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <button class="btn btn-primary float-right" style="background-color: #54BAB9" >Edit</button>

@@ -78,11 +78,6 @@ class CreateDestinationForm(forms.ModelForm, BootstrapFormControl):
                     'rows': DESCRIPTION_ROWS_COUNT,
                 }
             ),
-            'photo': forms.URLInput(
-                attrs={
-                    'placeholder': 'Enter photo URL',
-                }
-            )
         }
 
 

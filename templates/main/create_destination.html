@@ -6,7 +6,7 @@
      <div class="row justify-content-center">
         <h2>Add destination</h2>
     </div>
-    <form action="{% url 'create destination' %}" method="post">
+    <form action="{% url 'create destination' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <button class="btn btn-primary float-right">Create</button>

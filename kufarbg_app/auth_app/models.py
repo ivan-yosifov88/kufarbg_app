@@ -2,6 +2,7 @@ import datetime
 import enum
 
 import django.contrib.auth.models as auth_model
+from cloudinary import models as cloudinary_models
 from django.core.validators import MinLengthValidator, RegexValidator
 from django.db import models
 
@@ -88,7 +89,8 @@ class Profile(models.Model):
             MaxDateValidator(MAX_DATE_OF_BIRTH),
         )
     )
-    image_url = models.URLField(
+    image_url = cloudinary_models.CloudinaryField(
+        'image',
         null=True,
         blank=True,
     )

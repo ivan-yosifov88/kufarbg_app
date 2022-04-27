@@ -1,6 +1,7 @@
 import datetime
 
 from django.db import models
+from cloudinary import models as cloudinary_models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.utils import timezone
@@ -43,7 +44,8 @@ class Destinations(models.Model):
         )
     )
 
-    photo = models.URLField(
+    photo = cloudinary_models.CloudinaryField(
+        'image',
         null=True,
         blank=True,
     )

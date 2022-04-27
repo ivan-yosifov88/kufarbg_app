@@ -6,7 +6,7 @@
      <div class="row justify-content-center">
         <h2>Edit destination</h2>
     </div>
-    <form action="{% url 'edit destination' object.id %}" method="post">
+    <form action="{% url 'edit destination' object.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <button class="btn btn-primary float-right" style="background-color: #54BAB9">Edit</button>
