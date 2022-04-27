@@ -17,7 +17,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'https://kufarbg.herokuapp.com',
+    'kufarbg.herokuapp.com',
 ]
 
 DJANGO_APPS = (
