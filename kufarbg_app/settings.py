@@ -11,13 +11,12 @@ import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-%e!%5_ro!l#szp_=+9w^k!qd@y6_loe+urkz^a)8v+*7c87rin'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'debug_key')
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG', True)
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'kufarbg.herokuapp.com',
+    os.getenv('APP_HOST', '127.0.0.1')
 ]
 
 DJANGO_APPS = (
@@ -84,29 +83,29 @@ WSGI_APPLICATION = 'kufarbg_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd92ruocard477h',
-        'USER': 'kucbfzfouvypyj',
-        'PASSWORD': '9c9e99cfc4e905b517136d859a14caaad8dc49b1fd4c45800be117476d64427a',
-        'HOST': 'ec2-52-48-159-67.eu-west-1.compute.amazonaws.com',
+        'NAME': os.getenv('DB_NANE', 'kufar_app_db'),
+        'USER': os.getenv('DB_USER', 'postgres'),
+        'PASSWORD': os.getenv('DB_PASSWORD', '1123QwER'),
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
         'PORT': '5432',
     }
 }
 
-# TODO just for debug
-AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
-]
+if not DEBUG:
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
 
 LANGUAGE_CODE = 'en-us'
 
@@ -137,7 +136,7 @@ AUTH_USER_MODEL = 'auth_app.AppUser'
 LOGOUT_REDIRECT_URL = '/'
 
 cloudinary.config(
-    cloud_name="hrrbsagau",
-    api_key="779171527341692",
-    api_secret="XXmisQhptqTUgtX0Hi3Fa3fSN9I"
+    cloud_name=os.getenv('CLOUD_NAME'),
+    api_key=os.getenv('CLOUD_API_KEY'),
+    api_secret=os.getenv('CLOUD_API_SECRET')
 )
