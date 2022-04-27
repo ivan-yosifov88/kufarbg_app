@@ -17,7 +17,6 @@ dash-core-components==2.0.0
 dash-html-components==2.0.0
 dash-table==5.0.0
 dbus-python==1.2.16
-defer==1.0.6
 defusedxml==0.7.1
 distro==1.4.0
 distro-info===0.23ubuntu1
@@ -95,12 +94,6 @@ six==1.14.0
 smmap==5.0.0
 snowballstemmer==2.2.0
 Sphinx==4.5.0
-sphinxcontrib-applehelp==1.0.2
-sphinxcontrib-devhelp==1.0.2
-sphinxcontrib-htmlhelp==2.0.0
-sphinxcontrib-jsmath==1.0.1
-sphinxcontrib-qthelp==1.0.3
-sphinxcontrib-serializinghtml==1.1.5
 sqlparse==0.4.2
 system-service==0.3
 systemd-python==234
@@ -117,5 +110,4 @@ wadllib==1.3.3
 websocket-client==1.3.1
 Werkzeug==2.0.2
 whitenoise==6.0.0
-xkit==0.0.0
 zipp==3.8.0
