@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-
 # TODO ABOUT US CONTACT
 # TODO 400 403 404
 # TODO MEDIA FILES
@@ -40,6 +39,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + KUFARBG_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -69,16 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kufarbg_app.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'kufar_app_db',
-#         'USER': 'postgres',
-#         'PASSWORD': '1123QwER',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -120,6 +110,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
 MEDIA_URL = '/media/'
