@@ -3,7 +3,7 @@ from pathlib import Path
 
 # TODO ABOUT US CONTACT
 # TODO 400 403 404
-# TODO MEDIA FILES
+# TODO write some tests
 # TODO logging  
 import cloudinary
 
