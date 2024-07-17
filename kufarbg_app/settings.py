@@ -14,7 +14,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'debug_key')
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
-    os.getenv('APP_HOST', '127.0.0.1')
+    os.getenv('APP_HOST', '*')
 ]
 
 DJANGO_APPS = (
