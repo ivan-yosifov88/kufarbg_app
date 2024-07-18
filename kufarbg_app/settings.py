@@ -10,12 +10,15 @@ import cloudinary
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'debug_key')
+print(SECRET_KEY)
 
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
     os.getenv('APP_HOST', '*')
 ]
+print(ALLOWED_HOSTS)
+
 
 DJANGO_APPS = (
     'django.contrib.admin',
