@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -23,9 +22,39 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
           cd kufarbg_app &&
           git pull origin main &&
-          sudo pip3 install -r requirements.txt &&
-          python3 manage.py migrate &&
-          python3 manage.py collectstatic --noinput &&
-          sudo systemctl restart gunicorn_kufarbg_app &&
+          
+          # Activate virtual environment (create if not exists)
+          if [ ! -d "venv" ]; then
+            python3 -m venv venv
+          fi
+          source venv_kufarbg_app/bin/activate
+          
+          # Install or upgrade pip
+          pip install --upgrade pip
+          
+          # Install requirements
+          pip install -r requirements.txt
+          
+          # Run migrations
+          python manage.py migrate
+          
+          # Collect static files
+          python manage.py collectstatic --noinput
+          
+          # Deactivate virtual environment
+          deactivate
+          
+          # Reload systemd, restart Gunicorn and Nginx
+          sudo systemctl daemon-reload
+          sudo systemctl restart gunicorn_kufarbg_app
           sudo systemctl restart nginx
+          
+          # Restart Celery if you are using it
+          if systemctl is-active --quiet celery_kufarbg_app; then
+            sudo systemctl restart celery_kufarbg_app
+          fi
+          
+          if systemctl is-active --quiet celerybeat_kufarbg_app; then
+            sudo systemctl restart celerybeat_kufarbg_app
+          fi
         '
