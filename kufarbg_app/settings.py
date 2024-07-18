@@ -1,23 +1,28 @@
 import os
+import logging
 from pathlib import Path
-
+from dotenv import load_dotenv
 # TODO ABOUT US CONTACT
 # TODO 400 403 404
 # TODO write some tests
 # TODO logging  
 import cloudinary
+load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'debug_key')
-print(SECRET_KEY)
+logger.debug(SECRET_KEY)
+
 
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
     os.getenv('APP_HOST', '*')
 ]
-print(ALLOWED_HOSTS)
+logger.debug(ALLOWED_HOSTS)
 
 
 DJANGO_APPS = (
