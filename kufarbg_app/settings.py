@@ -20,7 +20,8 @@ logger.debug(SECRET_KEY)
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
-    os.getenv('APP_HOST', '*')
+    os.getenv('APP_HOST', '*'),
+    "nasko.com"
 ]
 logger.debug(ALLOWED_HOSTS)
 
