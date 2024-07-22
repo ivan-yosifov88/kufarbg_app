@@ -20,7 +20,9 @@ logger.debug(SECRET_KEY)
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
-    os.getenv('APP_HOST', '*')
+    os.getenv('APP_HOST', '*'),
+    "127.0.0.1",
+    "chiki-chiki.herokuapp.com",
 ]
 logger.debug(ALLOWED_HOSTS)
 
