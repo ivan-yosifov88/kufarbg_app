@@ -25,8 +25,8 @@ ALLOWED_HOSTS = [
     os.getenv('APP_HOST', '*'),
     "127.0.0.1",
     "chiki-chiki.herokuapp.com",
-    "chiki-chikiv2.herokuapp.com",
-    ]
+    "chiki-chikiv3.herokuapp.com",
+]
 logger.debug(ALLOWED_HOSTS)
 
 
