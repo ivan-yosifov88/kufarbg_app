@@ -4,6 +4,8 @@ from django.urls import path, include
 
 from kufarbg_app import settings
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('kufarbg_app.main_app.url')),
