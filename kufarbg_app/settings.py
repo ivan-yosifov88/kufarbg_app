@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'debug_secret_key')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'debug_super_sicret')
 logger.debug(SECRET_KEY)
 
 
