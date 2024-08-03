@@ -6,6 +6,8 @@ from kufarbg_app.main_app.forms import DestinationCommentForm
 from kufarbg_app.main_app.models import Destinations, Comments
 
 
+
+
 class DestinationCommentView(auth_mixins.LoginRequiredMixin, view.CreateView):
     form_class = DestinationCommentForm
     template_name = 'main/destination_comment.html'
